@@ -14,10 +14,11 @@ public class SortingProject {
    /**
     * This is the method where your program begins running. Once this method is
     * done your program is done.
+ * @throws Exception 
     */
-   public static void main(String[] args) {
-       testingMyCircularLL();
-       // testSorts();
+   public static void main(String[] args) throws Exception {
+       // testingMyCircularLL();
+       testSorts();
        return;
 
    }
@@ -64,7 +65,7 @@ public class SortingProject {
        System.out.println("The index of 8 should be -1: " + list.indexOf(8));
 
        System.out.println("*** TESTING METHODS AFTER EMPTY ***");
-       list.add(6); // failing to add 6
+       list.add(6);
        list.append(9);
        list.add(4);
        list.add(3);
@@ -88,29 +89,30 @@ public class SortingProject {
     * Method tests all the sorting algorithms It creates lists using
     * createUnsorted<List>(). It then prints lists. It will sort the lists Then
     * it will re-print lists.
+ * @throws Exception 
     */
-   private static void testSorts() {
+   private static void testSorts() throws Exception {
        //create lists
-       // MyCircularLL list1 = createUnsortedListLL();
+       MyCircularLL list1 = createUnsortedListLL();
        int[] list2 = createUnsortedListArray();
-       // int[] list3 = createUnsortedListArray();
+       int[] list3 = createUnsortedListArray();
 
        //print lists
-       // System.out.println("Prior to Sorting:");
-       // System.out.println("List 1: " + list1);
+       System.out.println("Prior to Sorting:");
+       System.out.println("List 1: " + list1);
        System.out.println("List 2: " + getArrayString(list2));
-       // System.out.println("List 3: " + getArrayString(list3));
+       System.out.println("List 3: " + getArrayString(list3));
 
        //Sort
-       // list1 = sortListSortOne(list1);
+       list1 = sortListSortOne(list1);
        list2 = sortListSortTwo(list2);
-       // list3 = sortListSortThree(list3);
+       list3 = sortListSortThree(list3);
 
        //re-print Lists
-       // System.out.println("\nAfter Sorting:");
-       // System.out.println("List 1: " + list1);
+       System.out.println("\nAfter Sorting:");
+       System.out.println("List 1: " + list1);
        System.out.println("List 2: " + getArrayString(list2));
-       //System.out.println("List 3: " + getArrayString(list3));
+       System.out.println("List 3: " + getArrayString(list3));
 
    }
 
@@ -118,10 +120,11 @@ public class SortingProject {
     * Sorts the list using insertion sort.
     *
     * @param listLL
+ * @throws Exception 
     */
-   private static MyCircularLL sortListSortOne(MyCircularLL listLL) {
-       //uncomment this line if you wish to write the sort inside the LL class
-       //listLL.sortOne();
+   private static MyCircularLL sortListSortOne(MyCircularLL listLL) throws Exception {
+       // insertion sort on circular linked list
+	   listLL.sortOne(listLL); 
        return listLL;
    }
 

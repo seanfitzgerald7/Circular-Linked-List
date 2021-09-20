@@ -178,5 +178,18 @@ class MyCircularLL {
             this.value = value;
         }
     }
+    /**
+     * Insertion sort on circular linked list
+     * @param list
+     * @return sorted list
+     * @throws Exception
+     */
+	public MyCircularLL sortOne(MyCircularLL list) throws Exception {
+		if (list.tail == null) throw new Exception();
+		
+		
+		return list;
+		
+	}
     
 }
