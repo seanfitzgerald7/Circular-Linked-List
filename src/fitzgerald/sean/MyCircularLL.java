@@ -21,6 +21,8 @@ class MyCircularLL {
      */
     public void add(int value) {
     	
+    	// O(1) best and worst case complexity
+    	
     	if (tail == null) {
     		Node new_node = new Node(value);
     		tail = new_node;
@@ -106,6 +108,7 @@ class MyCircularLL {
      * Removes the first value in the list
      */
     public void remove() {
+    	// O(1) constant best and worst case
     	if (tail == null) return;
     	if (tail.next == null && tail != null) {
     		tail = null;
@@ -120,6 +123,7 @@ class MyCircularLL {
      * Empties the list
      */
     public void empty() {
+    	// O(1) constant best and worst case
     	tail = null;
     }
     
@@ -129,6 +133,7 @@ class MyCircularLL {
      * @param value 
      */
     public int indexOf(int value){
+    	// O(n) average time, best case O(1), worst case O(n)
     	if (this.tail == null) return -1;
     	int index = 0;
     	Node current = this.tail.next;
@@ -187,7 +192,22 @@ class MyCircularLL {
 	public MyCircularLL sortOne(MyCircularLL list) throws Exception {
 		if (list.tail == null) throw new Exception();
 		
-		
+		Node start = list.tail;
+		Node current = start.next;
+		Node dummy = new Node(0, start);
+		Node prev = dummy;
+		while (current != list.tail) {
+			if (prev.value > current.value) {
+				prev = dummy;
+			}
+			while (prev.next != list.tail && prev.value < current.value) {
+				prev = prev.next;
+			}
+			Node nextNode = current.next;
+			current.next = prev.next;
+			prev.next = current;
+			current = nextNode;
+		}
 		return list;
 		
 	}
