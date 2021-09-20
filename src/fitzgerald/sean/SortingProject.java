@@ -64,7 +64,7 @@ public class SortingProject {
        System.out.println("The index of 8 should be -1: " + list.indexOf(8));
 
        System.out.println("*** TESTING METHODS AFTER EMPTY ***");
-       list.add(6);
+       list.add(6); // failing to add 6
        list.append(9);
        list.add(4);
        list.add(3);

@@ -20,10 +20,12 @@ class MyCircularLL {
      * @param value 
      */
     public void add(int value) {
+    	
     	if (tail == null) {
     		tail = new Node(value);
     		return;
     	}
+    	
     	if (tail != null && tail.next == null) {
     		Node new_node = new Node(value);
     		tail.next = new_node;
@@ -31,11 +33,9 @@ class MyCircularLL {
     		return;
     	}
     	Node new_node = new Node(value);
-    	Node current = tail;
     	Node old_head = tail.next;
     	tail.next = new_node;
     	new_node.next = old_head;
-    	return;
     	
     }
     
@@ -52,11 +52,6 @@ class MyCircularLL {
     		return;
     	}
     	
-    	if (tail.next == null && tail != null) {
-    		tail.next = new_node;
-    		new_node.next = new_node;
-    		return;
-    	}
     	// Sets head to a temporary node
     	// sets new node to head
     	// sets tail to new node
@@ -74,12 +69,15 @@ class MyCircularLL {
      */
     public void remove(int item){
     	
-    	if (this.tail == null || this.tail.next == tail) {
+    	// O(n) time complexity (best case O(1))
+    	
+    	if (this.tail == null || this.tail.next == null) {
     		if (this.tail.value == item) {
     			this.tail = null;
     			return;
     		}
     	}
+    	
     	Node current = tail.next;
     	Node prev = tail;
     	while (current != tail) {
@@ -93,7 +91,10 @@ class MyCircularLL {
     			prev = prev.next;
     		}
     	}
-    	
+    	if (this.tail.value == item) {
+    		prev.next = tail.next;
+    		tail = prev;
+    	}
     	
     }
 
@@ -106,10 +107,8 @@ class MyCircularLL {
     		tail = null;
     		return;
     	}
-    	Node temp = tail;
     	tail.next = tail.next.next;
-    	temp = null;
-    	
+    	return;
     }
     
     
@@ -117,6 +116,7 @@ class MyCircularLL {
      * Empties the list
      */
     public void empty() {
+    	tail = null;
     }
     
     /**
