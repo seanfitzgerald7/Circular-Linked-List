@@ -2,7 +2,7 @@ package fitzgerald.sean;
 
 /**
  * @version Starter Code
- * @author Katie Timmerman
+ * @author Katie Timmerman modified by Sean Fitzgerald
  */
 class MyCircularLL {
 
@@ -22,9 +22,12 @@ class MyCircularLL {
     public void add(int value) {
     	
     	if (tail == null) {
-    		tail = new Node(value);
+    		Node new_node = new Node(value);
+    		tail = new_node;
+    		tail.next = new_node;
     		return;
     	}
+    	
     	
     	if (tail != null && tail.next == null) {
     		Node new_node = new Node(value);
@@ -32,6 +35,7 @@ class MyCircularLL {
     		new_node.next = tail;
     		return;
     	}
+
     	Node new_node = new Node(value);
     	Node old_head = tail.next;
     	tail.next = new_node;
