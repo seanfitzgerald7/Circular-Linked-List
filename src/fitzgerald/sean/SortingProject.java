@@ -3,12 +3,11 @@ package fitzgerald.sean;
 import java.util.Arrays;
 
 /**
-* @version Starter Code
-* @author Katie Timmerman
+* @version Completed Code
+* @author Katie Timmerman modified by Sean Fitzgerald
 */
 public class SortingProject {
 
-   //You should change this size as you are testing your program
    final static int LIST_SIZE = 7;
 
    /**
@@ -118,9 +117,9 @@ public class SortingProject {
 
    /**
     * Sorts the list using insertion sort.
-    *
+    * Insertion sort time complexity -> best: O(n) worst: O(n^2) average: O(n^2)
     * @param listLL
- * @throws Exception 
+    * @throws Exception 
     */
    private static MyCircularLL sortListSortOne(MyCircularLL listLL) throws Exception {
        // insertion sort on circular linked list
@@ -130,9 +129,9 @@ public class SortingProject {
 
    /**
     * Sorts the list using merge sort.
-    *
+    * Merge sort time complexity -> O(n log(n)) best and worst case
     * @param listArray
- * @return 
+    * @return 
     */
    private static int[] sortListSortTwo(int[] listArray) {
 	   // O(n log n) runtime (best and worst case)
@@ -201,26 +200,33 @@ public class SortingProject {
 
  
    /**
-    * Create your own sorting algorithm.
-    * 
-    * Sort based off of bubble sort. 
+    * Sort based off of bubble sort. Improved by only passing through the array the minimum number of times
+    * Bubble sort will pass through the entire array n times, I added a flag that represents if the array is sorted or not.
+    * Time complexity is still O(n^2) but eliminates checking if elements are to be swapped on an already sorted array
     *
     * @param listArray
+    * @return listArray
     */
    private static int[] sortListSortThree(int[] listArray) {
 	   
-	   for (int i = 0; i < listArray.length - i - 1; i++) {
-		   for (int j = 0; j < listArray.length - i - 1; j++) {
+	   int last = listArray.length - 1; // last of list, will change after each pass through the list
+	   for (int i = 0; i < listArray.length; i++) {
+		   boolean sorted = true; // sorted flag
+		   int current = -1; // holding current index that was swapped
+		   for (int j = 0; j < last; j++) {
 			   if (listArray[j] > listArray[j+1]) {
+				   // swapping values 
 				   int temp = listArray[j];
-				   listArray[j] = listArray[j + 1];
-				   listArray[j + 1] = temp;
+				   listArray[j] = listArray[j+1];
+				   listArray[j+1] = temp;
+				   sorted = false;
+				   current = j;
 			   }
 		   }
+		   if (sorted) return listArray; // will return if sorted flag is true, no need to pass through the sorted list
+		   last = current; // assigning new last index to the current swap index
 	   }
-	  
-	   
-	   
+
 	   return listArray;
 	   
    }
