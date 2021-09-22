@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class SortingProject {
 
    //You should change this size as you are testing your program
-   final static int LIST_SIZE = 5;
+   final static int LIST_SIZE = 7;
 
    /**
     * This is the method where your program begins running. Once this method is
@@ -17,7 +17,7 @@ public class SortingProject {
  * @throws Exception 
     */
    public static void main(String[] args) throws Exception {
-       // testingMyCircularLL();
+       testingMyCircularLL();
        testSorts();
        return;
 
@@ -203,54 +203,26 @@ public class SortingProject {
    /**
     * Create your own sorting algorithm.
     * 
-    * Explain your improvement here.
+    * Sort based off of bubble sort. 
     *
     * @param listArray
     */
    private static int[] sortListSortThree(int[] listArray) {
 	   
-	   if (listArray.length <= 1) return listArray;
-	   
-	   int[] newL = new int[listArray.length];
-	   int comparison = listArray[listArray.length - 1] - listArray[0];
-	   for (int i = 0; i < listArray.length - 1; i++ ) {
-		   if (listArray[i] < comparison) {
-			   newL = addToFront(newL, listArray[i]);
-			   comparison = listArray[i];
-		   }
-		   else if (listArray[i] > comparison) {
-			   newL = addToBack(newL, listArray[i]);
-			   comparison = listArray[i];
-		   }
-		   else {
-			   sortListSortThree(newL);
+	   for (int i = 0; i < listArray.length - i - 1; i++) {
+		   for (int j = 0; j < listArray.length - i - 1; j++) {
+			   if (listArray[j] > listArray[j+1]) {
+				   int temp = listArray[j];
+				   listArray[j] = listArray[j + 1];
+				   listArray[j + 1] = temp;
+			   }
 		   }
 	   }
+	  
 	   
 	   
-	   return newL;
+	   return listArray;
 	   
-   }
-   
-   private static int[] addToFront(int[] newL, int num) {
-	   if (newL.length == 0) {
-		   newL[0] = num;
-		   return newL;
-	   }	   
-	   int[] newArray = Arrays.copyOf(newL, newL.length + 1);
-	   newArray[0] = num;
-	   System.arraycopy(newL, 0, newArray, 1, newL.length);
-	   return newArray;
-   }
-   
-   private static int[] addToBack(int[] newL, int num) {
-	   if (newL.length == 0) {
-		   newL[0] = num;
-		   return newL;
-	   }
-	   int[] newArray = Arrays.copyOf(newL, newL.length + 1);
-	   newArray[newArray.length - 1] = num;
-	   return newArray;
    }
    
 

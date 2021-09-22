@@ -184,7 +184,9 @@ class MyCircularLL {
         }
     }
     /**
-     * Insertion sort on circular linked list
+     * Insertion sort on circular linked list.
+     * Intead of swapping nodes, swap values of nodes to simulate an array-like insertion sort.
+     * O(n^2) time complexity
      * @param list
      * @return sorted list
      * @throws Exception
@@ -192,24 +194,28 @@ class MyCircularLL {
 	public MyCircularLL sortOne(MyCircularLL list) throws Exception {
 		if (list.tail == null) throw new Exception();
 		
-		Node start = list.tail;
-		Node current = start.next;
-		Node dummy = new Node(0, start);
-		Node prev = dummy;
-		while (current != list.tail) {
-			if (prev.value > current.value) {
-				prev = dummy;
+		Node current = list.tail.next; // head
+		Node insertionPointer = current; // head reference for insertion point
+		
+		current = current.next; // now 2nd node
+		while (current != list.tail.next) { // loop until back at head
+			
+			insertionPointer = list.tail.next; // set insert pointer to head, current pointer is one ahead
+			while (insertionPointer != current) {
+				if (insertionPointer.value > current.value) {
+					int temp = current.value; 
+					current.value = insertionPointer.value;
+					insertionPointer.value = temp;
+				} else {
+					insertionPointer = insertionPointer.next;
+				}
 			}
-			while (prev.next != list.tail && prev.value < current.value) {
-				prev = prev.next;
-			}
-			Node nextNode = current.next;
-			current.next = prev.next;
-			prev.next = current;
-			current = nextNode;
+			current = current.next;
+			
 		}
 		return list;
-		
 	}
+	
+ 
     
 }
